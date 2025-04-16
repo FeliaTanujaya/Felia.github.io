@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Through Buddhism</title>
+    <style>
+        :root {
+            --primary-color: #8e44ad;
+            --accent-color: #f1c40f;
+            --text-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --bg-translucent: rgba(0, 0, 0, 0.7);
+        }
+        
+        body {
+            background-image: url('Spring.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        ::backdrop {
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        header {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            background-color: rgba(0,0,0,0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .quote-container {
+            background: var(--bg-translucent);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-container::before {
+            content: '"';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            font-size: 150px;
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            color: var(--accent-color);
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        h2 {
+            font-size: 2.2em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 70%;
+            height: 3px;
+            background-color: var(--accent-color);
+            position: absolute;
+            bottom: -10px;
+            left: 15%;
+        }
+        
+        .quote-text {
+            font-size: 1.8em;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .author {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 50px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        button:hover {
+            background-color: #9b59b6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .info-section {
+            background: var(--bg-translucent);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-text {
+            font-style: normal;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            gap: 20px;
+        }
+        
+        .image-container {
+            flex: 1 0 45%;
+            min-width: 300px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .image-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .image-caption {
+            padding: 15px;
+            background: rgba(0,0,0,0.7);
+            font-style: italic;
+            font-size: 1em;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .principle {
+            background: rgba(142, 68, 173, 0.2);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .principle:hover {
+            background: rgba(142, 68, 173, 0.3);
+            transform: translateX(5px);
+        }
+        
+        .principle h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.5em;
+        }
+        
+        .principle .info-text {
+            margin-bottom: 0;
+        }
+        
+        .meditation-timer {
+            background: rgba(142, 68, 173, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 600px;
+        }
+        
+        .timer-display {
+            font-size: 3em;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+        
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .dropdown {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1em;
+        }
+        
+        .dropdown option {
+            background-color: #333;
+            color: white;
+        }
+        
+        .daily-wisdom {
+            padding: 30px;
+            background: rgba(241, 196, 15, 0.2);
+            border-radius: 15px;
+            margin: 40px auto;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .wisdom-date {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: rgba(0,0,0,0.8);
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            
+            .image-container {
+                flex: 1 0 100%;
+            }
+            
+            .quote-text {
+                font-size: 1.5em;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Journey Through Buddhism</h1>
+        <p>Explore wisdom, find peace, transform your life</p>
+    </header>
+    
+    <nav>
+        <a href="#quotes">Quotes</a>
+        <a href="#understanding">Understanding</a>
+        <a href="#four-truths">Four Truths</a>
+        <a href="#schools">Schools</a>
+        <a href="#practice">Practice</a>
+    </nav>
+    
+    <div class="container">
+        <div id="quotes" class="quote-container">
+            <h2>Daily Wisdom</h2>
+            <p class="quote-text" id="quote">"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment."</p>
+            <p class="author" id="author">- Buddha Siddhārtha Gautama</p>
+            <button onclick="showRandomQuote()">Next Quote</button>
+        </div>
+        
+        <div class="daily-wisdom">
+            <div class="wisdom-date" id="current-date"></div>
+            <h3>Contemplation of the Day</h3>
+            <p class="info-text">Take a moment today to observe your thoughts without judgment. Notice how they arise and pass away, like clouds in the sky. This simple practice can help you develop mindfulness and begin to understand the impermanent nature of all phenomena.</p>
+        </div>
+        
+        <div id="understanding" class="info-section">
+            <h2>Understanding Buddhism</h2>
+            <p class="info-text">
+                Buddhism is a religion and philosophy originating in India, centered on the teachings of Siddhartha Gautama, the Buddha. It emphasizes the Four Noble Truths and the Eightfold Path to achieve enlightenment and break free from the cycle of suffering and rebirth. Practicing Buddhism involves ethical conduct, meditation, and wisdom, with the goal of attaining nirvana, a state of peace and liberation.
+            </p>
+            
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="https://www.shutterstock.com/image-photo/famous-white-big-buddha-statue-600nw-2273171477.jpg" alt="Buddha statue in meditation pose">
+                    <div class="image-caption">Buddha statue in meditation pose, symbolizing inner peace and the journey toward enlightenment</div>
+                </div>
+                <div class="image-container">
+                    <img src="https://res.klook.com/image/upload/activities/dnzukwqevf8a8zexje2o.jpg" alt="Buddhist temple">
+                    <div class="image-caption">Mahabodhi Temple at Bodh Gaya, the sacred site where Buddha attained enlightenment under the Bodhi tree</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="four-truths" class="info-section">
+            <h2>The Four Noble Truths</h2>
+            <p class="info-text">
+                At the core of Buddhist teachings are the Four Noble Truths, which Buddha discovered during his enlightenment:
+            </p>
+            
+            <div class="principle">
+                <h3>1. The Truth of Suffering (Dukkha)</h3>
+                <p class="info-text">Life inherently contains suffering, dissatisfaction, and stress. Even pleasurable experiences are impermanent and eventually lead to suffering when they change. Buddha identified three types of suffering: obvious physical and mental pain, the suffering of change, and the subtle suffering of conditioned existence itself.</p>
+            </div>
+            
+            <div class="principle">
+                <h3>2. The Truth of the Origin of Suffering (Samudaya)</h3>
+                <p class="info-text">Suffering arises from craving and attachment. We desire permanent happiness from impermanent phenomena, crave pleasant experiences while rejecting unpleasant ones, and maintain a fundamental ignorance about our true nature. This craving (tanha) leads to the cycle of rebirth and renewed suffering.</p>
+            </div>
+            
+            <div class="principle">
+                <h3>3. The Truth of the End of Suffering (Nirodha)</h3>
+                <p class="info-text">Freedom from suffering is possible. By extinguishing craving and attachment, we can attain Nirvana—a state of profound peace beyond conditioning. This is not annihilation but liberation from the cycle of suffering, achieved through understanding and wisdom.</p>
+            </div>
+            
+            <div class="principle">
+                <h3>4. The Truth of the Path to the End of Suffering (Magga)</h3>
+                <p class="info-text">Buddha prescribed the Noble Eightfold Path as the way to end suffering. This comprehensive approach encompasses ethical conduct (right speech, action, and livelihood), mental discipline (right effort, mindfulness, and concentration), and wisdom (right understanding and intention). These eight factors work together to transform our relationship with ourselves and the world.</p>
+            </div>
+            
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="https://www.handtoheartjewelry.com/cdn/shop/products/fullsizeoutput_15ef_grande.jpeg?v=1547179015" alt="Dharma wheel">
+                    <div class="image-caption">The Dharma Wheel (Dharmachakra) represents the Eightfold Path with its eight spokes and Buddha's teachings</div>
+                </div>
+                <div class="image-container">
+                    <img src="https://img.freepik.com/premium-photo/vipassana-meditation-it-is-activity-monks-that-must-be-done-buddhism_369024-410.jpg" alt="Buddhist monks in meditation">
+                    <div class="image-caption">Buddhist monks practicing Vipassana meditation, developing insight into the true nature of reality</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="schools" class="info-section">
+            <h2>Schools of Buddhism</h2>
+            <p class="info-text">
+                As Buddhism spread across Asia over 2,500 years, it adapted to different cultures while maintaining its essential teachings. This evolution produced diverse traditions, each with unique practices and emphases, yet all rooted in the Buddha's core insights. These traditions include Theravada, Mahayana, and Vajrayana, each emphasizing different aspects of Buddhist teachings and practices.
+            </p>
+            
+            <div class="principle">
+                <h3>Theravāda: The Way of the Elders</h3>
+                <p class="info-text">Prevalent in Sri Lanka, Thailand, Myanmar, Cambodia, and Laos, Theravada emphasizes the original teachings preserved in the Pali Canon. Focused on individual liberation through monastic discipline and meditation, practitioners follow the path of the arhat—one who has attained enlightenment. Vipassana (insight) meditation and mindfulness practices are central to this tradition, which maintains a direct lineage to early Buddhism.</p>
+            </div>
+            
+            <div class="principle">
+                <h3>Mahāyāna: The Great Vehicle</h3>
+                <p class="info-text">Dominant in China, Japan, Korea, and Vietnam, Mahayana emphasizes universal salvation and compassion. It introduced the bodhisattva ideal—beings who delay their own enlightenment to help all sentient beings achieve liberation. With a vast collection of sutras beyond the Pali Canon, Mahayana developed sophisticated philosophical schools like Madhyamaka (Middle Way) and Yogacara (Mind-Only), along with practices like Pure Land devotion and Zen meditation.</p>
+            </div>
+            
+            <div class="principle">
+                <h3>Vajrayāna: The Diamond Vehicle</h3>
+                <p class="info-text">Prevalent in Tibet, Nepal, Bhutan, Mongolia, and parts of Russia, Vajrayana incorporates esoteric practices as a faster path to enlightenment. It employs visualization, mantras, mudras (hand gestures), and deity yoga within a highly structured system. Practitioners work with a guru who provides initiations into increasingly profound practices. Historically significant in Indonesia, particularly in Sumatra and Java during the 8th century, Vajrayana influenced local environmental ethics and spiritual traditions.</p>
+            </div>
+            
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Shishoin_temple_shibamata_Five_Tathagatas_2020.jpg/500px-Shishoin_temple_shibamata_Five_Tathagatas_2020.jpg" alt="Five Tathagatas">
+                    <div class="image-caption">The Five Tathāgatas (Cosmic Buddhas) in Shishoin Temple, Tokyo, representing different aspects of enlightened wisdom in Mahāyāna Buddhism</div>
+                </div>
+                <div class="image-container">
+                    <img src="https://i.etsystatic.com/17953385/r/il/938618/1669309372/il_570xN.1669309372_409x.jpg" alt="Vajra and bell">
+                    <div class="image-caption">The vajra (thunderbolt scepter) and bell (ghanta), ritual implements in Vajrayāna practice symbolizing method and wisdom</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="practice" class="info-section">
+            <h2>Practice Buddhism Today</h2>
+            <p class="info-text">
+                Buddhism offers practical tools for modern life, regardless of your cultural or religious background. These techniques can help reduce stress, develop emotional intelligence, and cultivate a more compassionate relationship with yourself and others.
+            </p>
+            
+            <div class="principle">
+                <h3>Mindfulness Meditation</h3>
+                <p class="info-text">Begin with just 5-10 minutes daily of focused attention on your breath. When your mind wanders (which is natural), gently return attention to the breath. This simple practice strengthens your ability to stay present and observe thoughts without being controlled by them.</p>
+            </div>
+            
+            <div class="principle">
+                <h3>Loving-Kindness Practice</h3>
+                <p class="info-text">Cultivate compassion by silently repeating phrases of goodwill: "May all beings be happy. May they be peaceful. May they be free from suffering." Start with yourself, then extend to loved ones, neutral people, difficult people, and eventually all beings.</p>
+            </div>
+            
+            <div class="principle">
+                <h3>Ethical Living</h3>
+                <p class="info-text">The Five Precepts offer guidance for harmonious living: refrain from killing, stealing, sexual misconduct, lying, and intoxication. Rather than rigid commandments, these are training principles to develop awareness of your actions and their consequences.</p>
+            </div>
+            
+            <div class="meditation-timer">
+                <h3>Meditation Timer</h3>
+                <p>Practice mindfulness with our simple meditation timer</p>
+                <div class="timer-display" id="timer">10:00</div>
+                <div class="timer-controls">
+                    <select id="time-selector" class="dropdown">
+                        <option value="5">5 minutes</option>
+                        <option value="10" selected>10 minutes</option>
+                        <option value="15">15 minutes</option>
+                        <option value="20">20 minutes</option>
+                        <option value="30">30 minutes</option>
+                    </select>
+                    <button id="start-timer">Begin Practice</button>
+                    <button id="reset-timer">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="back-to-top" id="back-to-top" onclick="scrollToTop()">↑</div>
+    
+    <script>
+        const quotes = [
+            {
+                text: "The root of suffering is attachment.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Dhammapada"
+            },
+            {
+                text: "Doubt everything. Find your own light.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Kalama Sutta"
+            },
+            {
+                text: "You will not be punished for your anger; you will be punished by your anger.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Dhammapada"
+            },
+            {
+                text: "Peace comes from within. Do not seek it without.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Dhammapada"
+            },
+            {
+                text: "Three things cannot be long hidden: the sun, the moon, and the truth.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Ambalatthika-rahulovada Sutta"
+            },
+            {
+                text: "What you think, you become. What you feel, you attract. What you imagine, you create.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Dhammapada"
+            },
+            {
+                text: "The mind is everything. What you think you become.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Majjhima Nikaya"
+            },
+            {
+                text: "Your worst enemy cannot harm you as much as your own unguarded thoughts.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Dhammapada"
+            },
+            {
+                text: "If you light a lamp for somebody, it will also brighten your path.",
+                author: "Buddha Siddhārtha Gautama",
+                source: "Dhammapada"
+            }
+        ];
+        
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quoteObj = quotes[randomIndex];
+            document.getElementById("quote").innerText = `"${quoteObj.text}"`;
+            document.getElementById("author").innerText = `- ${quoteObj.author}, ${quoteObj.source}`;
+        }
+        
+        // Meditation Timer
+        let timerInterval;
+        let timeLeft = 600; 
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById("timer").innerText = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        document.getElementById("time-selector").addEventListener("change", function() {
+            timeLeft = this.value * 60;
+            updateTimerDisplay();
+        });
+        
+        document.getElementById("start-timer").addEventListener("click", function() {
+            // Clear any existing interval
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            const button = this;
+            if (button.innerText === "Begin Practice") {
+                button.innerText = "Pause";
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        button.innerText = "Begin Practice";
+                        // Play sound or notification here
+                        alert("Meditation session completed. May you be well.");
+                    }
+                }, 1000);
+            } else {
+                button.innerText = "Begin Practice";
+                clearInterval(timerInterval);
+            }
+        });
+        
+        document.getElementById("reset-timer").addEventListener("click", function() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            document.getElementById("start-timer").innerText = "Begin Practice";
+            timeLeft = document.getElementById("time-selector").value * 60;
+            updateTimerDisplay();
+        });
+        
+        // Back to top button
+        window.onscroll = function() {
+            const backToTopButton = document.getElementById("back-to-top");
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                backToTopButton.classList.add("visible");
+            } else {
+                backToTopButton.classList.remove("visible");
+            }
+        };
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+        
+        // Set current date
+        document.addEventListener("DOMContentLoaded", function() {
+            const date = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById("current-date").innerText = date.toLocaleDateString(undefined, options);
+        });
+    </script>
+</body>
+</html>
